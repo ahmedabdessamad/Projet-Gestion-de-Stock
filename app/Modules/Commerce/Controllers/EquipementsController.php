@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use Alert;
 use DB;
+use App\Modules\Commerce\Models\Provider;
 
 
 
@@ -29,41 +30,28 @@ class EquipementsController extends Controller
 
 
 
-        $listG=DB::table('equipements')->orderBy('categorie_id')->get();
-        //$listG=Array('list'=>$listG );
-
-        $listS=DB::table('equipements')->where('status','=','1')->get();
-       // $listS=Array('listS'=>$listS);
-
-        $listM=DB::table('equipements')->where('status','=','3')->get();
-        //$listm=Array('listm'=>$listm);
-
-        $listDM=DB::table('equipements')->where('status','=','4')->get();
-        //$listDM=Array('listDM'=>$listDM);
-
-        $listAR=DB::table('equipements')->where('status','=','5')->get();
-      //  $listAR=Array('listAR'=>$listAR);
-
-        $listR=DB::table('equipements')->where('status','=','6')->get();
-      //  $listR=Array('listR'=>$listR);
 
 
-        $listO=DB::table('equipements')->where('status','=','2')->get();
-
-        $results = DB::select('select  C.name , C.reference ,E.n_serie ,E.status from categories C ,equipements E where E.categorie_id = C.id ORDER BY  E.categorie_id');
+        $results = DB::select('select  C.name , C.reference ,E.n_serie ,E.status from categories C ,equipements E where E.categorie_id = C.id And E.status = 1  ORDER BY  E.categorie_id');
+        $resultsO = DB::select('select  C.name , C.reference ,E.n_serie ,E.status from categories C ,equipements E where E.categorie_id = C.id   And E.status = 2  ORDER BY  E.categorie_id');
+        $resultsM = DB::select('select  C.name , C.reference ,E.n_serie ,E.status from categories C ,equipements E where E.categorie_id = C.id   And E.status = 3  ORDER BY  E.categorie_id');
+        $resultsD = DB::select('select  C.name , C.reference ,E.n_serie ,E.status from categories C ,equipements E where E.categorie_id = C.id   And E.status = 4  ORDER BY  E.categorie_id');
+        $resultsAR = DB::select('select  C.name , C.reference ,E.n_serie ,E.status from categories C ,equipements E where E.categorie_id = C.id   And E.status = 5  ORDER BY  E.categorie_id');
+        $resultsR = DB::select('select  C.name , C.reference ,E.n_serie ,E.status from categories C ,equipements E where E.categorie_id = C.id   And E.status = 6  ORDER BY  E.categorie_id');
 
 
         $cat=DB::table('categories')->get();
 
         return view('Commerce::Stock.list',[
-           'listG' => $listG,
-           'listO' => $listO, 
-           'listS' => $listS, 
-           'listM' => $listM,
-           'listDM' => $listDM,
-           'listR' => $listR,
-           'listAR'=>$listAR,
-            'results'=>$results
+
+            'results'=>$results,
+            'resultsO'=>$resultsO,
+            'resultsM'=>$resultsM,
+            'resultsD'=>$resultsD,
+            'resultsAR'=>$resultsAR,
+            'resultsR'=>$resultsR,
+
+
         ]);
     }
 
@@ -202,8 +190,14 @@ class EquipementsController extends Controller
 
     public function getCategorie_id()
     {
-return response()->json([
+     return response()->json([
     'cats' => Categorie::all()
     ]);
+    }
+
+    public function getProvider_id(){
+      return response()->json([
+        'provider' => Provider::all()
+      ]);
     }
 }

@@ -4,9 +4,10 @@ namespace App\Modules\Commerce\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Customer extends Model
+class Destination extends Model
 {
-     /**
+
+	     /**
      * Indicates if the model should be timestamped.
      *
      * @var bool
@@ -18,7 +19,7 @@ class Customer extends Model
      *
      * @var string
      */
-    protected $table = 'customers';
+    protected $table = 'destinations';
 
     /**
      * The attributes that are mass assignable.
@@ -27,23 +28,17 @@ class Customer extends Model
      */
     protected $fillable = [
         'name',
-        'reference',
-        'addresse',
-        'telephone',
-        'mail'
+        'customer_id',
     ];
 
-    /*public function equipement()
+	public function customer()
     {
-        return $this->hasMany(Equipement::class);
-    }*/
+        return $this->hasOne('App\Modules\Commerce\Models\Customer', 'id', 'customer_id');
+    }
 
     public function mission()
     {
-        return $this->belongsToMany(Mission::class);
+        return $this->belongsToMany('App\Modules\Commerce\Models\Mission');
     }
-    public function destination()
-    {
-        return $this->hasMany('App\Modules\Commerce\Models\Destination');
-    }
+	
 }

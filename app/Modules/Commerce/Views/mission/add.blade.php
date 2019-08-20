@@ -68,8 +68,20 @@
                             <select class="form-control site" name="site"></select>
                             </div>  
                         </div>
+                         <div class="form-group dest" style="display: none;">
+                            <label class="col-sm-3">{{__('Destination')}}</label>
+                            <div class="col-sm-6">
+                            <select class="form-control destination" name="destination"></select>
+                            </div>  
+                        </div>
                  </div>
                  <div class="col-md-6">
+                      <div class="form-group">
+                            <label class="col-sm-3">{{__('Matricule Véhicule')}}</label>
+                            <div class="col-sm-6">
+                           <input type="text" name="matricule" class="form-control">
+                            </div>  
+                        </div>
                         <div class="form-group">
                             <label class="col-sm-3">{{__('Intervenants')}}</label>
                             <div class="col-sm-6">
@@ -87,13 +99,15 @@
                         <div class="form-group">
                             <label class="col-sm-3">{{__('Equipements')}}</label>
                             <div class="col-sm-6">
-                            <select name="" multiple="" data-placeholder="Listes des équipements" class="chosen-select equipements" style="display: none;">
-                               <optgroup>    
-                                @foreach ($equipements as $equipement)
-                                 <option value="{{$equipement->id}}">{{$equipement->n_serie}}</option>
-                                @endforeach
-                               </optgroup>
-                        </select> 
+                            <select name="" multiple="" data-placeholder="Listes des equipements" class="chosen-select equipements" style="display: none;">
+    @foreach($equipements as $equipement)
+    <optgroup label="{{$equipement['cat']->name}}">
+        @foreach ($equipement['equip'] as $equip)
+         <option value="{{$equip->id}}">{{$equip->n_serie}}</option>
+        @endforeach
+    </optgroup>
+    @endforeach
+</select>
                         <input type="hidden" id="speakers_ids" name="speakers">
                         <input type="hidden" id="equipement_ids" name="equipements">
                  </div>                 
@@ -140,6 +154,28 @@
 
        $('.equipements').on('change', function(){
         $('#equipement_ids').val($(this).val());
+       });
+       $('.site').on('change', function() {
+         //alert( this.value );
+          $.ajax({
+                    'url': "{{ route('apiGetDestination')}}",
+                    'type': 'GET',
+                    'data': {id: this.value},
+                    success: function(response){ // What to do if we succeed
+                           html = "<option  value=''>Choisir une Destination</option>";
+                $.each(response.destinations, function(j, d) {
+                html += '<option value="' + d.id + '">' + d.name + '</option>';
+                });
+                $('select.destination').append(html);
+                $('.dest').css('display', 'block'); 
+                    },
+                    error: function(response){
+                        alert('Error'+response);
+                    }
+                });
+
+       
+         
        });
 
     });

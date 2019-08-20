@@ -82,7 +82,7 @@
                                                         <td> {{$categorie->quantite_min}}</td>
                                                         <td class="text-center">
 
-                                                        <button class="btn btn-default deletebtn pull-right" title="Suppression" data-id="{{ $categorie->id }}">
+                                                                                    <button class="btn btn-default deletebtn pull-right" title="Suppression" data-id="{{ $categorie->id }}">
                                             <i class="glyph-icon icon-close"></i>
                                         </button>
                                                             <a href="#" class="btn btn-default editCatBtn pull-right" data-id="{{$categorie->id}}" data-name="{{$categorie->name}}" data-ref="{{$categorie->reference}}"
@@ -122,7 +122,7 @@
                                                             @endif
                                                         </div>
                                                     </div>
-                                                        <div class="form-group">
+<div class="form-group">
                                                         <label class="col-sm-3 col-md-3 control-label">Réference</label>
                                                         <div class="col-sm-6 col-md-9">
                                                             <input name="reference" type="text" class="form-control" id="" placeholder="Code produit...">
@@ -132,7 +132,7 @@
                                                         </div>
                                                     </div>
 
-                                                  <div class="form-group">
+<div class="form-group">
                                                         <label class="col-sm-3 col-md-3 control-label">Qte Min</label>
                                                         <div class="col-sm-6 col-md-9">
                                                             <input name="quantite_min" type="text" class="form-control" id="" placeholder="quantite minimum">

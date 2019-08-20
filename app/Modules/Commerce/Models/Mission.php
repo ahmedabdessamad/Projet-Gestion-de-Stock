@@ -28,14 +28,19 @@ class Mission extends Model
     protected $fillable = [
         'numero',
         'date',
-        //'speakers',
+        'matricule',
         //'equipement',
-        'customer_id'
+        'customer_id',
+        'destination_id'
     ];
 
     public function User()
     {
     return $this->hasMany(User::class)->withTimestamps();
+    } 
+    public function destination()
+    {
+    return $this->hasOne('App\Modules\Commerce\Models\Destination','id','destination_id');
     } 
 
     public function Equipement()

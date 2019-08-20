@@ -27,7 +27,10 @@ class Equipement extends Model
      */
     protected $fillable = [
         'n_serie',
-        'status'
+        'status',
+        'categorie_id',
+        'provider_id'
+
     ];
 
 
@@ -35,7 +38,7 @@ class Equipement extends Model
     
     public function categorie()
     {
-        return $this->belongsTo(Categorie::class);
+        return $this->belongsTo('App\Modules\Commerce\Models\Categorie', 'categorie_id', 'id' );
     }
 
     public function provider()

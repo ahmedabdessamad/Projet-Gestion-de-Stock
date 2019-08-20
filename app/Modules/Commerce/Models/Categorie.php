@@ -36,6 +36,6 @@ class Categorie extends Model
 
     public function equipement()
     {
-        return $this->hasMany(Equipement::class);
+        return $this->hasMany('App\Modules\Commerce\Models\Equipement');
     }
 }

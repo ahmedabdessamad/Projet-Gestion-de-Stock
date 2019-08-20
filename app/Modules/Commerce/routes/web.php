@@ -14,9 +14,21 @@ Route::group(['prefix' => 'equipements', 'middleware' => ['responsible']],functi
   Route::get('/add', 'EquipementsController@showAddequipements')->name('showAddequipements');
   Route::post('/add', 'EquipementsController@handleAddequipements')->name('handleAddequipements');
   Route::post('/edit', 'EquipementsController@handleEditequipements')->name('handleEditequipements');
+  Route::post('/edit/{id}', 'EquipementsController@handleEditEq')->name('handleEditEq');
+  Route::get('/edit/{id}', 'EquipementsController@handleEditEq')->name('handleEditEq');
+  Route::delete('/', 'EquipementsController@handleDeleteEquipements')->name('handleDeleteEquipements');
+  
+
+  Route::get('/API/GetCategories', 'EquipementsController@getCategorie_id')->name('getCategorie_id');
+  Route::get('/API/GetProvider', 'EquipementsController@getProvider_id')->name('getProvider_id');
+
+
   Route::get('/API/GetCategories', 'EquipementsController@getCategorie_id')->name('getCategorie_id');
  Route::get('/API/Cahnge/status', 'MissionController@ApiChangeProductStatus')->name('ApiChangeProductStatus');
-
+ Route::post('add/equipement', 'MissionController@handleAddEquipement')->name('handleAddEquipement');
+ Route::post('add/speakers', 'MissionController@handleAddSpeaker')->name('handleAddSpeaker');
+  Route::post('add/media', 'MissionController@addMedia')->name('addMedia');
+    Route::get('pdf/generate/{id}', 'MissionController@generateGoodOutput')->name('generateGoodOutput');
 });
 
      Route::group(['prefix' => 'client', 'middleware' => ['responsible']],function(){
@@ -26,6 +38,10 @@ Route::group(['prefix' => 'equipements', 'middleware' => ['responsible']],functi
        Route::get('/edit/{id}', 'CustomerController@showEditCustomer')->name('showEditCustomer');
        Route::post('/edit/', 'CustomerController@handleEditCustomer')->name('handleEditCustomer');       
        Route::delete('/delete/', 'CustomerController@handleDeleteCustomer')->name('handleDeleteCustomer');
+       Route::get('/show/{id}', 'CustomerController@showCustomerDestination')->name('showCustomerDestination');
+       Route::post('/destination/add', 'CustomerController@handleAddDestination')->name('handleAddDestination');
+       Route::post('/destination/edit', 'CustomerController@handleEditDestination')->name('handleEditDestination');
+       Route::get('/destination/get', 'CustomerController@apiGetDestination')->name('apiGetDestination');        
      });
 
      Route::group(['prefix' => 'provider', 'middleware' => ['responsible']],function(){

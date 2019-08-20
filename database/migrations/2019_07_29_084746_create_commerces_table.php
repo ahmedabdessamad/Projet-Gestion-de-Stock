@@ -30,6 +30,16 @@ class CreateCommercesTable extends Migration
             $table->string('mail');
             $table->timestamps();
         }); 
+        Schema::create('destinations', function (Blueprint $table) {
+          $table->increments('id');
+          $table->string('name');
+          $table->integer('customer_id')->unsigned();
+          $table->timestamps();
+        });
+        Schema::table('destinations', function ($table) {
+           $table->foreign('customer_id')->references('id')->on('customers')
+              ->onDelete('cascade');
+        });
         Schema::create('providers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
@@ -44,7 +54,7 @@ class CreateCommercesTable extends Migration
             $table->string('n_serie');
             $table->integer('categorie_id')->unsigned();            
             $table->integer('provider_id')->unsigned();
-            $table->integer('status');
+            $table->integer('status'); // 1:enstock, 2:occupée, 3:montée, 4:demontée, 5:areparée, 6:reparée
             $table->timestamps();
         });
         Schema::table('equipements', function ($table) {
@@ -58,13 +68,17 @@ class CreateCommercesTable extends Migration
             $table->increments('id');
             $table->string('numero');
             $table->date('date');
+            $table->string('matricule');
             $table->integer('customer_id')->unsigned();            
-            $table->string('speakers'); // 1 en cour, 2 terminée
+            $table->integer('destination_id')->unsigned();
+            $table->string('etat'); // 1 en cour, 2 terminée
             $table->timestamps();
         });
 
         Schema::table('missions', function (Blueprint $table) {
             $table->foreign('customer_id')->references('id')->on('customers')
+             ->onDelete('cascade');
+             $table->foreign('destination_id')->references('id')->on('destinations')
              ->onDelete('cascade');
         });
 
@@ -72,7 +86,7 @@ class CreateCommercesTable extends Migration
             $table->increments('id');
             $table->integer('mission_id')->unsigned();
             $table->string('image');
-            $table->string('etat'); // 1 after, 2 before
+            $table->string('etat'); // 1 before, 2 after 
             $table->timestamps();
         }); 
         Schema::table('commerce_media_report', function ($table) {
@@ -133,5 +147,6 @@ class CreateCommercesTable extends Migration
         Schema::dropIfExists('commerce_media_report'); 
         Schema::dropIfExists('mission_speakers');
         Schema::dropIfExists('mission_equipements');
+        Schema::dropIfExists('destinations');
     }
 }

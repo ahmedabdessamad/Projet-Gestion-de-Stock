@@ -15,6 +15,7 @@
                             <div class="info-input mrg10B"><small>Si vous ne specifier un nouveaux nom, on va guardé l'ancien</small></div>
                     </div>
                 </div>
+                
             
                     <input type="hidden" name="id" id="depId">
             </div>

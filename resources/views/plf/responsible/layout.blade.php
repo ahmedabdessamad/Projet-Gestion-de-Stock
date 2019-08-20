@@ -3,6 +3,15 @@
 <head>
     <link rel="icon" type="image/png" href="{{ asset('templates/logo-min.png') }}" />
     @yield('head')
+    <style type="text/css">
+      
+div#page-sidebar {
+    height: auto !important;
+}
+.scroll-sidebar {
+    height: auto !important;
+}
+    </style>
 </head>
 <body class="fixed-header">
 @include('sweet::alert')

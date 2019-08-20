@@ -3,14 +3,14 @@
         <ul id="sidebar-menu">
             <li class="header"><span>Vue D'ensemble</span></li>
             <li>
-                <a href="{{route('showResponsibleDashboard')}}" title="responsible Dashboard">
+                <a href="{{route('showResponsibleDashboard')}}" title="Dashboard">
                     <i class="glyph-icon icon-dashboard"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
             <li class="header"><span>RH</span></li>
             <li>
-                <a href="#" title="Exploitation">
+                <a href="#" title="Employees">
                     <i class="glyph-icon icon-users"></i>
                     <span>Employees</span>
                 </a>
@@ -68,12 +68,12 @@
                 <div class="sidebar-submenu">
                     <ul>
                         <li>
-                            <a href="{{Route('showLeaveRequest')}}" title="{{__('listes des Departements')}}">
+                            <a href="{{Route('showLeaveRequest')}}" title="{{__('listes des demandes')}}">
                                 <span>{{__('listes des demandes')}}</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{Route('showaddGroupLeave')}}" title="{{__('listes des Departements')}}">
+                            <a href="{{Route('showaddGroupLeave')}}" title="{{__('congée du groupe')}}">
                                 <span>{{__('congée du groupe')}}</span>
                             </a>
                         </li>
@@ -82,31 +82,35 @@
                 <!-- .sidebar-submenu -->
             </li>
             <li class="header"><span>commerce</span></li>
-            <li>
+             <li>
                 <a href="#" title="Paramètres">
-                    <i class="glyph-icon icon-linecons-cog"></i>
-                    <span>{{__('categorie')}}</span>
+                    <i class="glyph-icon icon-database" title="" data-original-title="stock"></i>
+                    <span>{{__('Stock')}}</span>
                 </a>
-                <div class="sidebar-submenu">
+                  <div class="sidebar-submenu">
                     <ul>
                         <li>
-                            <a href="{{Route('showCategorie')}}" title="{{__('listes des Departements')}}">
-                                <span>{{__('listes des categorie')}}</span>
+                            <a href="{{Route('showEquipements')}}" title="{{__('stock')}}">
+                                <span>{{__('stock')}}</span>
                             </a>
+                        </li>
+                        <li>
+                         <a href="{{Route('showAddequipements')}}" title="{{__('Ajouter un équipement')}}">
+                            <span>{{__('Ajouter un équipement')}}</span>
+                         </a>                       
                         </li>
                     </ul>
                 </div>
-                <!-- .sidebar-submenu -->
             </li>
             <li>
                 <a href="#" title="Paramètres">
-                    <i class="glyph-icon icon-linecons-cog"></i>
+                    <i class="glyph-icon icon-code-fork"></i>
                     <span>{{__('clients')}}</span>
                 </a>
                 <div class="sidebar-submenu">
                     <ul>
                         <li>
-                            <a href="{{Route('showCustomer')}}" title="{{__('listes des Departements')}}">
+                            <a href="{{Route('showCustomer')}}" title="{{__('listes des clients')}}">
                                 <span>{{__('listes des clients')}}</span>
                             </a>
                         </li>
@@ -116,7 +120,7 @@
             </li>
             <li>
                 <a href="#" title="Paramètres">
-                    <i class="glyph-icon icon-linecons-cog"></i>
+                    <i class="glyph-icon icon-anchor"></i>
                     <span>{{__('fournisseur')}}</span>
                 </a>
                 <div class="sidebar-submenu">
@@ -131,38 +135,36 @@
                 <!-- .sidebar-submenu -->
             </li>
             <li>
-                <a href="#" title="Paramètres">
-                    <i class="glyph-icon icon-linecons-cog"></i>
-                    <span>{{__('Stock')}}</span>
-
+                <a href="#" title="categorie">
+                    <i class="glyph-icon icon-sitemap" title="" data-original-title="categorie"></i>
+                    <span>{{__('categorie')}}</span>
                 </a>
                 <div class="sidebar-submenu">
                     <ul>
                         <li>
-                            <a href="{{Route('showEquipements')}}" title="{{__('listes des Departements')}}">
-                                <span>{{__('stock')}}</span>
+                            <a href="{{Route('showCategorie')}}" title="{{__('listes des categorie')}}">
+                                <span>{{__('listes des categorie')}}</span>
                             </a>
                         </li>
-
                     </ul>
                 </div>
-
+                <!-- .sidebar-submenu -->
             </li>
             <li>
-                <a href="#" title="Paramètres">
-                    <i class="glyph-icon icon-linecons-cog"></i>
-                    <span>{{__('Gestionnaire des mission')}}</span>
+                <a href="#" title="Gestionnaire des mission">
+                  <i class="glyph-icon icon-trophy" title="" data-original-title=".Gestionnaire des mission"></i>
+                    <span>{{__('Mission')}}</span>
 
                 </a>
                 <div class="sidebar-submenu">
                     <ul>
                         <li>
-                            <a href="{{Route('showMission')}}" title="{{__('listes des Departements')}}">
+                            <a href="{{Route('showMission')}}" title="{{__('mission')}}">
                                 <span>{{__('mission')}}</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{Route('showAddMission')}}" title="{{__('listes des Departements')}}">
+                            <a href="{{Route('showAddMission')}}" title="{{__('creer une mission')}}">
                                 <span>{{__('creer une mission')}}</span>
                             </a>
                         </li>
@@ -174,20 +176,6 @@
             </li>
 
             <li>
-                <a href="#" title="Paramètres">
-                    <i class="glyph-icon icon-linecons-cog"></i>
-                    <span>{{__('Gestion des équipementns')}}</span>
-                </a>
-                <div class="sidebar-submenu">
-                    <ul>
-                        <li>
-                         <a href="{{Route('showAddequipements')}}" title="{{__('listes des Departements')}}">
-                            <span>{{__('Ajouter un équipement')}}</span>
-                         </a>                       
-                        </li>
-                    </ul>
-                </div>
-
 
             <li class="header"><span>Gestion</span></li>
             <li>
@@ -197,7 +185,7 @@
                 </a>
                 <div class="sidebar-submenu">
                     <ul>
-                        <li><a href="#" title="Lots"><span>parametres</span></a></li>
+                        <li><a href="#" title="parametres"><span>parametres</span></a></li>
                     </ul>
                 </div>
                 <!-- .sidebar-submenu -->

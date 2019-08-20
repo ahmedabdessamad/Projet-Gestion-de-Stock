@@ -128,7 +128,7 @@
                 });
         });
 
- $("div.toolbar").html('<a class="btn btn-default pull-right mb-20" href="{{ route('showAddEmployee') }}" role="button">Ajouter</a>');
+ $("div.toolbar").html('<a class="btn btn-default pull-right mb-20" href="{{ route('showAddEmployee')}}" role="button">Ajouter</a>');
     });
 
 </script>

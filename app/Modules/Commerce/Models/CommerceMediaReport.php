@@ -19,7 +19,7 @@ class CommerceMediaReport extends Model
      *
      * @var string
      */
-    protected $table = 'commerce_media_reports';
+    protected $table = 'commerce_media_report';
 
     /**
      * The attributes that are mass assignable.

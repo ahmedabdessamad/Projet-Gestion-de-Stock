@@ -67,6 +67,9 @@
                                         {{ $customer->mail }}
                                     </td>
                                     <td>
+                                        <a class="btn btn-default" href="{{Route('showCustomerDestination', $customer->id ) }}">
+                                            <i class="glyph-icon icon-eye"></i>
+                                        </a>
                                         <a class="btn btn-default" href="{{Route('showEditCustomer', $customer->id ) }}">
                                           <i class="glyph-icon icon-edit"></i>
                                         </a>
